@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pragma.Application.Api", "Pragma.Application.Api\Pragma.Application.Api.csproj", "{D67079E7-70F0-41DE-B42E-EA39B2DF50C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pragma.Application.Api", "Pragma.Application.Api\Pragma.Application.Api.csproj", "{D67079E7-70F0-41DE-B42E-EA39B2DF50C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pragma.Application.Domain", "Pragma.Application.Domain\Pragma.Application.Domain.csproj", "{AD5DE9AC-6A63-4E58-B937-983725A52606}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pragma.Application.Domain", "Pragma.Application.Domain\Pragma.Application.Domain.csproj", "{AD5DE9AC-6A63-4E58-B937-983725A52606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pragma.Application.Infrastructure", "Pragma.Application.Infrastructure\Pragma.Application.Infrastructure.csproj", "{6B3A60B2-D069-433C-B979-A52CBBFA1B74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pragma.Application.Infrastructure", "Pragma.Application.Infrastructure\Pragma.Application.Infrastructure.csproj", "{6B3A60B2-D069-433C-B979-A52CBBFA1B74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pragma.Tests", "Pragma.Tests\Pragma.Tests.csproj", "{2C6E2A8A-2132-45A8-8440-2E3388051292}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6B3A60B2-D069-433C-B979-A52CBBFA1B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B3A60B2-D069-433C-B979-A52CBBFA1B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B3A60B2-D069-433C-B979-A52CBBFA1B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C6E2A8A-2132-45A8-8440-2E3388051292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C6E2A8A-2132-45A8-8440-2E3388051292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C6E2A8A-2132-45A8-8440-2E3388051292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C6E2A8A-2132-45A8-8440-2E3388051292}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

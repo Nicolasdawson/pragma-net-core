@@ -27,7 +27,10 @@ namespace Pragma.Application.Api.Controllers
 
         [HttpGet]
         [Route("usuarios")]
-        public virtual IActionResult GetUsuarios(string search)
+        public virtual IActionResult GetUsuarios(
+            [FromQuery] string search,
+            [FromQuery] int skip,
+            [FromQuery] int take)
         {
             try
             {
@@ -64,16 +67,10 @@ namespace Pragma.Application.Api.Controllers
                 //    }
                 //}
 
-                int skip = 0;
-                int take = 50;
-
-                var skipParam = HttpContext.Request.Query["skip"];
-                var takeParam = HttpContext.Request.Query["take"];
-
-                if (!string.IsNullOrEmpty(skipParam) && !string.IsNullOrEmpty(takeParam))
+                if (skip == default && take == default)
                 {
-                    skip = int.Parse(skipParam);
-                    take = int.Parse(takeParam);
+                    skip = 0;
+                    take = 50;
                 }
 
                 return Ok(queryUsuarios.Skip(skip).Take(take).ToList());
