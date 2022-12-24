@@ -86,7 +86,7 @@ namespace Pragma.Application.Api.Controllers
         }
 
         [HttpGet]
-        [Route("usuario/{id}")]
+        [Route("usuarios/{id}")]
         public virtual IActionResult GetUsuario(
             [FromRoute] System.Guid id)
         {
