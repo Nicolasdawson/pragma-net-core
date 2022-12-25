@@ -50,12 +50,16 @@ namespace Pragma.Tests.Controllers
                 .Returns(GetUsuarios().AsQueryable());
 
             var usuariosController = CreateUsuariosController();
-            string search = null;
+            string search = string.Empty;
+            string sortColumn = string.Empty;
+            string sortOrder = string.Empty;
 
             var result = usuariosController.GetUsuarios(
                 search,
                 0,
-                0);
+                0,
+                sortColumn,
+                sortOrder);
 
             Assert.NotNull(result);
             var usuarios = Assert.IsAssignableFrom<OkObjectResult>(result);
@@ -72,11 +76,15 @@ namespace Pragma.Tests.Controllers
 
             var usuariosController = CreateUsuariosController();
             string search = "Juanito";
+            string sortColumn = string.Empty;
+            string sortOrder = string.Empty;
 
             var result = usuariosController.GetUsuarios(
                 search,
                 0,
-                0);
+                0,
+                sortColumn,
+                sortOrder);
 
             Assert.NotNull(result);
             var usuarios = Assert.IsAssignableFrom<OkObjectResult>(result);
@@ -93,16 +101,46 @@ namespace Pragma.Tests.Controllers
 
             var usuariosController = CreateUsuariosController();
             string search = "Juanito";
+            string sortColumn = string.Empty;
+            string sortOrder = string.Empty;
 
             var result = usuariosController.GetUsuarios(
                 search,
-                1,
-                1);
+                0,
+                0,
+                sortColumn,
+                sortOrder);
 
             Assert.NotNull(result);
             var usuarios = Assert.IsAssignableFrom<OkObjectResult>(result);
             Assert.True(usuarios.StatusCode == 200);
             Assert.NotNull(usuarios.Value);
+        }
+
+        [Fact]
+        public void GetUsuarios_StateUnderTest_sort_ExpectedBehavior()
+        {
+            _mockUsuarioRepository.Setup(x => x.Get(It.IsAny<Expression<Func<Usuario, bool>>>(), null))
+                .Returns(GetUsuarios().AsQueryable());
+
+            var usuariosController = CreateUsuariosController();
+            string search = string.Empty;
+            string sortColumn = "nombre";
+            string sortOrder = "asc";
+
+            var result = usuariosController.GetUsuarios(
+                search,
+                0,
+                0,
+                sortColumn,
+                sortOrder);
+
+            Assert.NotNull(result);
+            var response = Assert.IsAssignableFrom<OkObjectResult>(result);
+            Assert.True(response.StatusCode == 200);
+            Assert.NotNull(response.Value);
+            var usuarios = Assert.IsAssignableFrom<List<Usuario>>(response.Value);
+            Assert.Equal("Allyson", usuarios.FirstOrDefault().Nombre);
         }
 
         [Fact]
@@ -344,7 +382,7 @@ namespace Pragma.Tests.Controllers
                 Correo = "juanita@gmail.com",
                 FechaNacimiento = System.DateTime.Now,
                 Id = Guid.NewGuid(),
-                Nombre = "Juanita",
+                Nombre = "Allyson",
                 Rut = "4501326-K"
             }
         };

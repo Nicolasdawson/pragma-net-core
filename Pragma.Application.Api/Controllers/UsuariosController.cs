@@ -30,7 +30,9 @@ namespace Pragma.Application.Api.Controllers
         public virtual IActionResult GetUsuarios(
             [FromQuery] string search,
             [FromQuery] int skip,
-            [FromQuery] int take)
+            [FromQuery] int take,
+            [FromQuery] string sortColumn,
+            [FromQuery] string sortOrder)
         {
             try
             {
@@ -41,31 +43,10 @@ namespace Pragma.Application.Api.Controllers
                     queryUsuarios = UsuarioSpec.SearchQuery(queryUsuarios, search.Trim().ToLower());
                 }
 
-                //string sortColumn = HttpContext.Request.Query["sortColumn"];
-                //string sortOrder = HttpContext.Request.Query["sortOrder"];
-
-                //if (!string.IsNullOrEmpty(sortColumn) && !string.IsNullOrEmpty(sortOrder))
-                //{
-                //    if (sortOrder != "asc" && sortOrder != "desc")
-                //    {
-                //        return BadRequest("parametros de query invalidos: " + sortColumn);
-                //    }
-
-                //    var param = Expression.Parameter(typeof(Usuario), "p");
-                //    var sortProperty = Expression.Property(param, sortColumn);
-                //    var sortLambda = Expression.Lambda(sortProperty, param);
-
-                //    var xd = x => x.Key;
-
-                //    if (sortOrder == "asc")
-                //    {
-                //        queryUsuarios = queryUsuarios.OrderBy(x => x == sortOrder);
-                //    }
-                //    else
-                //    {
-                //        queryUsuarios = queryUsuarios.OrderByDescending(sortLambda);
-                //    }
-                //}
+                if (!string.IsNullOrEmpty(sortColumn) && !string.IsNullOrEmpty(sortOrder))
+                {
+                    queryUsuarios = UsuarioSpec.SortColumns(queryUsuarios, sortColumn, sortOrder);
+                }
 
                 if (skip == default && take == default)
                 {
